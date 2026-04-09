@@ -43,9 +43,74 @@
 
 ## SQL Queries
 
-### 1. List all the columns of the Salespeople table.
+1. List all the columns of the Salespeople table.
 
-SELECT * FROM salespeople;
+select*from salespeople;
++------+---------+-----------+------+
+| SNUM | SNAME   | CITY      | COMM |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.12 |
+| 1002 | Serres  | San Jose  | 0.13 |
+| 1003 | AxelRod | New York  | 0.10 |
+| 1004 | Motika  | London    | 0.11 |
+| 1005 | Fran    | London    | 0.26 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
+
+
+
+
+2.List all customers with a rating of 100.
+
+
+select * from customers where rating = 100;
++------+---------+--------+--------+------+
+| CNUM | CNAME   | CITY   | RATING | SNUM |
++------+---------+--------+--------+------+
+| 2001 | Hoffman | London |    100 | 1001 |
+| 2006 | Clemens | London |    100 | 1001 |
+| 2007 | Pereira | Rome   |    100 | 1004 |
++------+---------+--------+--------+------+
+
+3.Find all records in the Customer table with NULL values in the city column.
+
+
+select * from customers where city is null;
+Empty set (0.00 sec)
+
+
+
+4. Find the largest order taken by each salesperson on each date.
+
+
+select snum , odate, max(amt) from orders group by snum, odate;
++------+------------+----------+
+| snum | odate      | max(amt) |
++------+------------+----------+
+| 1007 | 1996-10-03 |  1098.16 |
+| 1004 | 1996-10-03 |  1900.10 |
+| 1001 | 1996-10-03 |   767.19 |
+| 1002 | 1996-10-03 |  5160.45 |
+| 1003 | 1996-10-04 |  1713.23 |
+| 1001 | 1996-10-05 |  4723.00 |
+| 1002 | 1996-10-06 |  1309.95 |
+| 1001 | 1996-10-06 |  9891.88 |
++------+------------+----------+
+
+5. Arrange the Orders table by descending customer number.
+select amt, cnum from orders order by cnum desc;
+
+
+SELECT amt, cnum FROM orders ORDER BY cnum DESC;
+
++------+------+
+| amt  | cnum |
++------+------+
+|  200 | 1005 |
+|  300 | 1003 |
+|  700 | 1002 |
+|  500 | 1001 |
++------+------+
+4 rows in set (0.00 sec)
 
 ```sql
 
