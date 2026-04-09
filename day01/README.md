@@ -112,6 +112,100 @@ SELECT amt, cnum FROM orders ORDER BY cnum DESC;
 +------+------+
 4 rows in set (0.00 sec)
 
+
+
+
+
+6. Find which salespeople currently have orders in the Orders table.
+
+select distinct snum from orders;
++------+
+| snum |
++------+
+| 1001 |
+| 1002 |
+| 1003 |
+| 1004 |
+| 1007 |
++------+
+extra
+
+
+7. List names of all customers matched with the salespeople serving them.
+
+
+select distinct c.cname, s.sname from customers c join salespeople s on c.snum = s.snum;
++----------+---------+
+| cname    | sname   |
++----------+---------+
+| Hoffman  | Peel    |
+| Giovanni | AxelRod |
+| Liu      | Serres  |
+| Grass    | Serres  |
+| Clemens  | Peel    |
+| Pereira  | Motika  |
+| Cisneros | Rifkin  |
++----------+---------+
+
+8. Find the names and numbers of all salespeople who had more than one customer.
+
+
+
+SELECT s.snum, s.sname
+FROM customers c
+JOIN salespeople s
+ON c.snum = s.snum
+GROUP BY s.snum, s.sname
+HAVING COUNT(c.cnum) > 1;
+
+
+
++------+--------+
+| snum | sname  |
++------+--------+
+| 1001 | Peel   |
+| 1002 | Serres |
++------+--------+
+
+
+
+9. Count the orders of each of the salespeople and output the results in descending order.
+
+
+
+ select snum, count(8) as total_orders from orders group by snum order by total_orders desc;
++------+--------------+
+| snum | total_orders |
++------+--------------+
+| 1001 |            3 |
+| 1002 |            2 |
+| 1003 |            2 |
+| 1007 |            2 |
+| 1004 |            1 |
++------+--------------+
+5 rows in set (0.00 sec)
+
+
+10. List the Customer table if and only if one or more of the customers in the Customer table are
+located in San Jose.
+
+
+
+select * from customers
+ where exists
+(select 1 from customers where city = 'san jose');
+
+| CNUM | CNAME    | CITY     | RATING | SNUM |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | London   |    100 | 1001 |
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2006 | Clemens  | London   |    100 | 1001 |
+| 2007 | Pereira  | Rome     |    100 | 1004 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
++------+----------+----------+--------+------+
+
 ```sql
 
 
