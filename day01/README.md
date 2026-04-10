@@ -225,6 +225,37 @@ select s.sname, c.cname , c.city from customers c join salespeople s on c.city =
 | Serres | Cisneros | San Jose |
 +--------+----------+----------+
 
+11. Match salespeople to customers according to what city they lived in.
+
+
+select s.sname, c.cname , c.city from customers c join salespeople s on c.city = s.city;
++--------+----------+----------+
+| sname  | cname    | city     |
++--------+----------+----------+
+| Fran   | Hoffman  | London   |
+| Motika | Hoffman  | London   |
+| Peel   | Hoffman  | London   |
+| Serres | Liu      | San Jose |
+| Fran   | Clemens  | London   |
+| Motika | Clemens  | London   |
+| Peel   | Clemens  | London   |
+| Serres | Cisneros | San Jose |
++--------+----------+----------+
+
+
+
+12. Find the largest order taken by each salesperson.
+
+select s.snum, s.sname, max(o.amt) as max_orders from orders o join salespeople s on s.snum = o.snum group by s.snum , s.sname;
++------+---------+------------+
+| snum | sname   | max_orders |
++------+---------+------------+
+| 1007 | Rifkin  |    1098.16 |
+| 1004 | Motika  |    1900.10 |
+| 1001 | Peel    |    9891.88 |
+| 1002 | Serres  |    5160.45 |
+| 1003 | AxelRod |    1713.23 |
++------+---------+------------+
 
 
 
