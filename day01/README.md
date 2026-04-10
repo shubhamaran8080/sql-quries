@@ -206,6 +206,29 @@ select * from customers
 | 2008 | Cisneros | San Jose |    300 | 1007 |
 +------+----------+----------+--------+------+
 
+
+
+11. Match salespeople to customers according to what city they lived in.
+
+
+select s.sname, c.cname , c.city from customers c join salespeople s on c.city = s.city;
++--------+----------+----------+
+| sname  | cname    | city     |
++--------+----------+----------+
+| Fran   | Hoffman  | London   |
+| Motika | Hoffman  | London   |
+| Peel   | Hoffman  | London   |
+| Serres | Liu      | San Jose |
+| Fran   | Clemens  | London   |
+| Motika | Clemens  | London   |
+| Peel   | Clemens  | London   |
+| Serres | Cisneros | San Jose |
++--------+----------+----------+
+
+
+
+
+
 ```sql
 
 
