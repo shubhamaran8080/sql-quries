@@ -269,6 +269,18 @@ select cname, rating, city from customers where rating>200 and city = 'san jose'
 | Cisneros |    300 | San Jose |
 +----------+--------+----------+
 
+
+14. List the names and commissions of all salespeople in London.
+
+select sname, city, comm from salespeople where city = 'london';
++--------+--------+------+
+| sname  | city   | comm |
++--------+--------+------+
+| Peel   | London | 0.12 |
+| Motika | London | 0.11 |
+| Fran   | London | 0.26 |
++--------+--------+------+
+
 ```sql
 
 
