@@ -258,7 +258,16 @@ select s.snum, s.sname, max(o.amt) as max_orders from orders o join salespeople 
 +------+---------+------------+
 
 
+13. Find customers in San Jose who have a rating above 200.
 
+
+
+select cname, rating, city from customers where rating>200 and city = 'san jose';
++----------+--------+----------+
+| cname    | rating | city     |
++----------+--------+----------+
+| Cisneros |    300 | San Jose |
++----------+--------+----------+
 
 ```sql
 
