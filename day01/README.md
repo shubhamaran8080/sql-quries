@@ -294,6 +294,19 @@ mysql> select distinct c.cname, o.odate from customers c join orders o on c.cnum
 | Liu      | 1996-10-03 |
 +----------+------------+
 
+16. Find all customers with orders on October 3.
+
+mysql> select distinct c.cname, o.odate from customers c join orders o on c.cnum = o.cnum where odate = '1996-10-03';
++----------+------------+
+| cname    | odate      |
++----------+------------+
+| Cisneros | 1996-10-03 |
+| Pereira  | 1996-10-03 |
+| Hoffman  | 1996-10-03 |
+| Liu      | 1996-10-03 |
++----------+------------+
+
+
 
 
 ```sql
