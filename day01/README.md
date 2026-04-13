@@ -208,22 +208,7 @@ select * from customers
 
 
 
-11. Match salespeople to customers according to what city they lived in.
 
-
-select s.sname, c.cname , c.city from customers c join salespeople s on c.city = s.city;
-+--------+----------+----------+
-| sname  | cname    | city     |
-+--------+----------+----------+
-| Fran   | Hoffman  | London   |
-| Motika | Hoffman  | London   |
-| Peel   | Hoffman  | London   |
-| Serres | Liu      | San Jose |
-| Fran   | Clemens  | London   |
-| Motika | Clemens  | London   |
-| Peel   | Clemens  | London   |
-| Serres | Cisneros | San Jose |
-+--------+----------+----------+
 
 11. Match salespeople to customers according to what city they lived in.
 
@@ -280,6 +265,36 @@ select sname, city, comm from salespeople where city = 'london';
 | Motika | London | 0.11 |
 | Fran   | London | 0.26 |
 +--------+--------+------+
+
+
+
+15. List all the orders of salesperson Motika from the Orders table.
+    
+mysql> SELECT s.sname, o.*
+    -> FROM salespeople s
+    -> JOIN orders o
+    -> ON s.snum = o.snum
+    -> WHERE s.sname = 'Motika';
++--------+------+---------+------------+------+------+
+| sname  | ONUM | AMT     | ODATE      | CNUM | SNUM |
++--------+------+---------+------------+------+------+
+| Motika | 3002 | 1900.10 | 1996-10-03 | 2007 | 1004 |
++--------+------+---------+------------+------+------+
+
+
+16. Find all customers with orders on October 3.
+
+mysql> select distinct c.cname, o.odate from customers c join orders o on c.cnum = o.cnum where odate = '1996-10-03';
++----------+------------+
+| cname    | odate      |
++----------+------------+
+| Cisneros | 1996-10-03 |
+| Pereira  | 1996-10-03 |
+| Hoffman  | 1996-10-03 |
+| Liu      | 1996-10-03 |
++----------+------------+
+
+
 
 ```sql
 
