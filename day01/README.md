@@ -321,7 +321,24 @@ October 6.
 | 3011 | 9891.88 | 1996-10-06 | 2006 | 1001 |
 +------+---------+------------+------+------+
 
+19. Write a query that uses the EXISTS operator to extract all salespeople who have customers
+with a rating of 300.
 
+
+ SELECT *
+    -> FROM salespeople s
+    -> WHERE EXISTS (
+    ->     SELECT 1
+    ->     FROM customers c
+    ->     WHERE s.snum = c.snum
+    ->     AND c.rating = 300
+    -> );
++------+--------+-----------+------+
+| SNUM | SNAME  | CITY      | COMM |
++------+--------+-----------+------+
+| 1002 | Serres | San Jose  | 0.13 |
+| 1007 | Rifkin | Barcelona | 0.15 |
++------+--------+-----------+------+
 
 
 
