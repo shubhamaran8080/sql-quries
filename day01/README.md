@@ -307,6 +307,24 @@ mysql> select distinct c.cname, o.odate from customers c join orders o on c.cnum
 +----------+------------+
 
 
+18. Select all orders that had amounts that were greater than at least one of the orders from
+October 6.
+
+ select * from orders where amt> any(select amt from orders where odate ='1996-10-06');
++------+---------+------------+------+------+
+| ONUM | AMT     | ODATE      | CNUM | SNUM |
++------+---------+------------+------+------+
+| 3002 | 1900.10 | 1996-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1996-10-03 | 2003 | 1002 |
+| 3008 | 4723.00 | 1996-10-05 | 2006 | 1001 |
+| 3009 | 1713.23 | 1996-10-04 | 2002 | 1003 |
+| 3011 | 9891.88 | 1996-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+
+
+
+
+
 
 
 ```sql
