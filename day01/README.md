@@ -379,6 +379,37 @@ with a rating of 300.
 +------+--------+-----------+------+
 
 
+Q20: Find all pairs of customers having the same rating
+
+
+ SELECT c1.cname, c2.cname, c1.rating
+    -> FROM customers c1, customers c2
+    -> WHERE c1.rating = c2.rating
+    -> AND c1.cnum < c2.cnum;
++----------+----------+--------+
+| cname    | cname    | rating |
++----------+----------+--------+
+| Hoffman  | Clemens  |    100 |
+| Hoffman  | Pereira  |    100 |
+| Giovanni | Liu      |    200 |
+| Grass    | Cisneros |    300 |
+| Clemens  | Pereira  |    100 |
++----------+----------+--------+
+
+Q21: Find all customers whose CNUM is 1000 above the SNUM of Serres
+
+
+SELECT *
+    -> FROM customers
+    -> WHERE cnum = (
+    ->     SELECT snum + 1000
+    ->     FROM salespeople
+    ->     WHERE sname = 'Serres');
++------+----------+------+--------+------+
+| CNUM | CNAME    | CITY | RATING | SNUM |
++------+----------+------+--------+------+
+| 2002 | Giovanni | Rome |    200 | 1003 |
++------+----------+------+--------+------+
 
 ```sql
 
