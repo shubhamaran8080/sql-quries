@@ -411,6 +411,22 @@ SELECT *
 | 2002 | Giovanni | Rome |    200 | 1003 |
 +------+----------+------+--------+------+
 
+
+Q22: Give the salespeople’s commissions as percentages instead of decimal numbers
+
+ SELECT sname, comm * 100 AS commission_percentage
+    -> FROM salespeople;
++---------+-----------------------+
+| sname   | commission_percentage |
++---------+-----------------------+
+| Peel    |                 12.00 |
+| Serres  |                 13.00 |
+| AxelRod |                 10.00 |
+| Motika  |                 11.00 |
+| Fran    |                 26.00 |
+| Rifkin  |                 15.00 |
++---------+-----------------------+
+6 rows in set (0.02 sec)
 ```sql
 
 
