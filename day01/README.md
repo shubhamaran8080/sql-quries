@@ -427,6 +427,22 @@ Q22: Give the salespeople’s commissions as percentages instead of decimal numb
 | Rifkin  |                 15.00 |
 +---------+-----------------------+
 6 rows in set (0.02 sec)
+
+Q23: Find the largest order taken by each salesperson on each date, eliminating those MAX orders < 3000
+
+
+SELECT snum, odate, MAX(amt) AS max_order
+    -> FROM orders
+    -> GROUP BY snum, odate
+    -> HAVING MAX(amt) >= 3000;
++------+------------+-----------+
+| snum | odate      | max_order |
++------+------------+-----------+
+| 1002 | 1996-10-03 |   5160.45 |
+| 1001 | 1996-10-05 |   4723.00 |
+| 1001 | 1996-10-06 |   9891.88 |
++------+------------+-----------+
+
 ```sql
 
 
