@@ -443,6 +443,47 @@ SELECT snum, odate, MAX(amt) AS max_order
 | 1001 | 1996-10-06 |   9891.88 |
 +------+------------+-----------+
 
+
+24.List the largest orders for October 3, for each salesperson.
+
+
+select o.snum, o.odate, o.amt
+    -> from orders o
+    -> where o.odate = '1996-10-03'
+    -> and o.amt = (
+    ->     select max(amt)
+    ->     from orders
+    ->     where snum = o.snum
+    ->     and odate = '1996-10-03'
+    -> );
++------+------------+---------+
+| snum | odate      | amt     |
++------+------------+---------+
+| 1004 | 1996-10-03 | 1900.10 |
+| 1001 | 1996-10-03 |  767.19 |
+| 1002 | 1996-10-03 | 5160.45 |
+| 1007 | 1996-10-03 | 1098.16 |
++------+------------+---------+
+
+
+
+25.Find all customers located in cities where Serres (SNUM 1002) has customers.
+
+ select *
+    -> from customers
+    -> where city in (
+    ->     select city
+    ->     from customers
+    ->     where snum = 1002
+    -> );
++------+----------+----------+--------+------+
+| CNUM | CNAME    | CITY     | RATING | SNUM |
++------+----------+----------+--------+------+
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
++------+----------+----------+--------+------+
+
 ```sql
 
 
