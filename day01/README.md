@@ -484,6 +484,32 @@ select o.snum, o.odate, o.amt
 | 2008 | Cisneros | San Jose |    300 | 1007 |
 +------+----------+----------+--------+------+
 
+
+
+
+26.Select all customers with a rating above 200.00
+
+
+select * from customers
+    -> where rating > 200;
++------+----------+----------+--------+------+
+| CNUM | CNAME    | CITY     | RATING | SNUM |
++------+----------+----------+--------+------+
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
++------+----------+----------+--------+------+
+
+
+27.Count the number of salespeople currently listing orders in the Orders table.
+
+
+select count(distinct snum) as total_salespeople
+    -> from orders;
++-------------------+
+| total_salespeople |
++-------------------+
+|                 5 |
++-------------------+
 ```sql
 
 
