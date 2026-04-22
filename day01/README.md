@@ -510,6 +510,38 @@ select count(distinct snum) as total_salespeople
 +-------------------+
 |                 5 |
 +-------------------+
+
+
+
+28.Write a query that produces all customers serviced by salespeople with a commission above 12%. Output the customer’s name and the salesperson’s rate of commission
+
+select c.cname, s.comm
+    -> from customers c
+    -> join salespeople s
+    -> on c.snum = s.snum
+    -> where s.comm > 0.12;
++----------+------+
+| cname    | comm |
++----------+------+
+| Liu      | 0.13 |
+| Grass    | 0.13 |
+| Cisneros | 0.15 |
++----------+------+
+
+29.Find salespeople who have multiple customers.
+
+select snum, count(*) as total_customers
+    -> from customers
+    -> group by snum
+    -> having count(*) > 1;
++------+-----------------+
+| snum | total_customers |
++------+-----------------+
+| 1001 |               2 |
+| 1002 |               2 |
++------+-----------------+
+
+
 ```sql
 
 
