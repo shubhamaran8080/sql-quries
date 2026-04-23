@@ -541,6 +541,20 @@ select snum, count(*) as total_customers
 | 1002 |               2 |
 +------+-----------------+
 
+30.Find salespeople with customers located in their city.
+
+select distinct s.snum, s.sname
+    -> from salespeople s
+    -> join customers c
+    -> on s.snum = c.snum
+    -> where s.city = c.city;
++------+--------+
+| snum | sname  |
++------+--------+
+| 1001 | Peel   |
+| 1002 | Serres |
+
+
 
 ```sql
 
