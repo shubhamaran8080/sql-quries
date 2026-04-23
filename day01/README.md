@@ -554,7 +554,15 @@ select distinct s.snum, s.sname
 | 1001 | Peel   |
 | 1002 | Serres |
 
+31.Find all salespeople whose name starts with ‘P’ and the fourth character is ‘l’.
 
+select * from salespeople
+    -> where sname like 'P__l%';
++------+-------+--------+------+
+| SNUM | SNAME | CITY   | COMM |
++------+-------+--------+------+
+| 1001 | Peel  | London | 0.12 |
++------+-------+--------+------+
 
 ```sql
 
