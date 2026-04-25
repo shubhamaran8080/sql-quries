@@ -564,6 +564,41 @@ select * from salespeople
 | 1001 | Peel  | London | 0.12 |
 +------+-------+--------+------+
 
+32.Write a query that uses a subquery to obtain all orders for the customer named Cisneros. Assume you do not know his customer number
+
+select *
+    -> from orders
+    -> where cnum = (
+    ->     select cnum
+    ->     from customers
+    ->     where cname = 'Cisneros'
+    -> );
++------+---------+------------+------+------+
+| ONUM | AMT     | ODATE      | CNUM | SNUM |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1996-10-03 | 2008 | 1007 |
+| 3006 | 1098.16 | 1996-10-03 | 2008 | 1007 |
++------+---------+------------+------+------+
+
+33.Find the largest orders for Serres and Rifkin.
+
+select o.*
+    -> from orders o
+    -> join salespeople s
+    -> on o.snum = s.snum
+    -> where s.sname in ('Serres', 'Rifkin')
+    -> and o.amt = (
+    ->     select max(amt)
+    ->     from orders
+    ->     where snum = o.snum
+    -> );
++------+---------+------------+------+------+
+| ONUM | AMT     | ODATE      | CNUM | SNUM |
++------+---------+------------+------+------+
+| 3005 | 5160.45 | 1996-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1996-10-03 | 2008 | 1007 |
++------+---------+------------+------+------+
+
 ```sql
 
 
